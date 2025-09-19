@@ -112,7 +112,40 @@ button {
 
 .divider {
   border-bottom: 2px solid var(--primary-color);
+  padding: 20px 0;
 }
+
+
+.increase, .decrease {
+  width: 60px;
+  text-align: center;
+  padding: 5px 2rem;
+  background-color: unset;
+  color: #000;
+}
+
+.remove {
+  justify-self: end;
+  align-self: end;
+  background-color: var(--secondary-color);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: var(--small-font);
+  padding: 0.5rem 1rem;
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.cart-card__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
 
 /* End utility classes */
 
@@ -161,6 +194,7 @@ button {
   flex-flow: row wrap;
   list-style-type: none;
   justify-content: center;
+  width: 100%;
 }
 
 .product-list a {
@@ -210,6 +244,7 @@ button {
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
+  width: 80%;
 }
 
 .cart-card__image {
