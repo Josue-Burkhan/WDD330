@@ -1,17 +1,37 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  loadHeaderFooter,
+  updateCartCount,
+} from "./utils.mjs";
+
+loadHeaderFooter();
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  const cartFooter = document.querySelector(".cart-footer");
+  if (cartItems.length > 0) {
+    cartFooter.classList.remove("hide");
+    const total = cartItems.reduce(
+      (acc, item) => acc + item.FinalPrice * (item.quantity || 1),
+      0
+    );
+    const cartTotalElement = document.querySelector(".cart-total");
+    cartTotalElement.innerHTML = `Total: $${total.toFixed(2)}`;
+  } else {
+    cartFooter.classList.add("hide");
+  }
 }
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider" data-id="${item.Id}">
-    <a href="#" class="cart-card__image">
+    <a href="/product/index.html?product=${item.Id}" class="cart-card__image">
       <img src="${item.Image}" alt="${item.Name}" />
     </a>
-    <a href="#">
+    <a href="/product/index.html?product=${item.Id}">
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
@@ -37,6 +57,7 @@ function updateQuantity(id, change) {
   });
   setLocalStorage("so-cart", cart);
   renderCartContents();
+  updateCartCount();
 }
 
 function removeItem(id) {
@@ -44,14 +65,22 @@ function removeItem(id) {
   cart = cart.filter((item) => item.Id !== id);
   setLocalStorage("so-cart", cart);
   renderCartContents();
+  updateCartCount();
 }
 
 document.querySelector(".product-list").addEventListener("click", (e) => {
   const id = e.target.closest("li")?.dataset.id;
   if (!id) return;
-  if (e.target.classList.contains("increase")) updateQuantity(id, 1);
-  if (e.target.classList.contains("decrease")) updateQuantity(id, -1);
-  if (e.target.classList.contains("remove")) removeItem(id);
+
+  if (e.target.classList.contains("increase")) {
+    updateQuantity(id, 1);
+  }
+  if (e.target.classList.contains("decrease")) {
+    updateQuantity(id, -1);
+  }
+  if (e.target.classList.contains("remove")) {
+    removeItem(id);
+  }
 });
 
 renderCartContents();

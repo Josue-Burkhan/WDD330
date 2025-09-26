@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Welcome! Enjoy our summer sale with discounts up to 50%!",
+    "background": "darkblue",
+    "color": "white"
+  },
+  {
+    "message": "Free shipping on all orders over $50.",
+    "background": "#f0a868",
+    "color": "black"
+  }
+]

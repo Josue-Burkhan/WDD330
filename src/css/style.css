@@ -164,6 +164,29 @@ button {
   fill: gray;
 }
 
+.cart-footer {
+  padding: 1rem;
+  font-size: var(--large-font);
+  text-align: right;
+  border-top: 2px solid var(--primary-color);
+  margin-top: 1rem;
+}
+
+.cart-footer.hide {
+  display: none;
+}
+
+.cart-count {
+  background-color: var(--tertiary-color);
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: -5px;
+}
+
 /* End cart icon styles */
 
 .mission {
@@ -276,6 +299,49 @@ button {
   grid-column: 3;
 }
 
+
+.product-card__price {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.product-card__price--original {
+  text-decoration: line-through;
+  color: var(--dark-grey);
+  font-size: var(--small-font);
+}
+
+.product-card__price--final {
+  color: var(--tertiary-color);
+  font-weight: bold;
+}
+
+.product-card__discount {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  font-size: var(--small-font);
+  font-weight: bold;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+
+/*Alert part*/
+.alert-list {
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.alert-list p {
+  padding: 1rem;
+  margin: 0;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -295,4 +361,5 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+  text-align: center;
 }
