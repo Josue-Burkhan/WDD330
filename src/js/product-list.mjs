@@ -6,8 +6,13 @@ export default class ProductList {
   }
 
   async init() {
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
     this.renderList(list);
+    document.querySelector(
+      ".top-products-title"
+    ).innerHTML = `Top Products: ${
+      this.category.charAt(0).toUpperCase() + this.category.slice(1)
+    }`;
   }
 
   renderList(list) {
@@ -16,7 +21,8 @@ export default class ProductList {
   }
 
   productCardTemplate(product) {
-    const isDiscounted = product.SuggestedRetailPrice > product.FinalPrice;
+    const isDiscounted =
+      product.SuggestedRetailPrice > product.FinalPrice;
     let priceInfo = "";
     let discountBadge = "";
 
@@ -27,18 +33,24 @@ export default class ProductList {
           100
       );
       priceInfo = `
-        <span class="product-card__price--original">$${product.SuggestedRetailPrice.toFixed(2)}</span>
-        <span class="product-card__price--final">$${product.FinalPrice.toFixed(2)}</span>
+        <span class="product-card__price--original">$${product.SuggestedRetailPrice.toFixed(
+          2
+        )}</span>
+        <span class="product-card__price--final">$${product.FinalPrice.toFixed(
+          2
+        )}</span>
       `;
       discountBadge = `<p class="product-card__discount">${discountPercentage}% off</p>`;
     } else {
-      priceInfo = `<span class="product-card__price--final">$${product.FinalPrice.toFixed(2)}</span>`;
+      priceInfo = `<span class="product-card__price--final">$${product.FinalPrice.toFixed(
+        2
+      )}</span>`;
     }
 
     return `<li class="product-card">
       <a href="/product/index.html?product=${product.Id}">
         <img
-          src="${product.Image}"
+          src="${product.Images.PrimaryMedium}"
           alt="Image of ${product.NameWithoutBrand}"
         />
         <h3 class="card__brand">${product.Brand.Name}</h3>

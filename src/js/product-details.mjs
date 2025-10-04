@@ -1,4 +1,8 @@
-import { setLocalStorage, getLocalStorage, updateCartCount } from "./utils.mjs";
+import {
+  setLocalStorage,
+  getLocalStorage,
+  updateCartCount,
+} from "./utils.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -17,28 +21,28 @@ export default class ProductDetails {
 
   addToCart() {
     let cart = getLocalStorage("so-cart") || [];
-
-    const existingProductIndex = cart.findIndex(item => item.Id === this.product.Id);
-
+    const existingProductIndex = cart.findIndex(
+      (item) => item.Id === this.product.Id
+    );
     if (existingProductIndex > -1) {
       cart[existingProductIndex].quantity += 1;
     } else {
       this.product.quantity = 1;
       cart.push(this.product);
     }
-
     setLocalStorage("so-cart", cart);
     updateCartCount();
   }
 
   renderProductDetails() {
-    const isDiscounted = this.product.SuggestedRetailPrice > this.product.FinalPrice;
+    const isDiscounted =
+      this.product.SuggestedRetailPrice > this.product.FinalPrice;
     let discountInfo = "";
     if (isDiscounted) {
       const discountPercentage = Math.round(
         ((this.product.SuggestedRetailPrice - this.product.FinalPrice) /
           this.product.SuggestedRetailPrice) *
-        100
+          100
       );
       discountInfo = `<p class="product-card__discount">${discountPercentage}% off</p>`;
     }
@@ -48,12 +52,20 @@ export default class ProductDetails {
       <h2 class="divider">${this.product.NameWithoutBrand}</h2>
       <img
         class="divider"
-        src="${this.product.Image}"
+        src="${this.product.Images.PrimaryLarge}"
         alt="${this.product.NameWithoutBrand}"
       />
       <p class="product-card__price">
-        ${isDiscounted ? `<span class="product-card__price--original">$${this.product.SuggestedRetailPrice.toFixed(2)}</span>` : ""}
-        <span class="product-card__price--final">$${this.product.FinalPrice.toFixed(2)}</span>
+        ${
+          isDiscounted
+            ? `<span class="product-card__price--original">$${this.product.SuggestedRetailPrice.toFixed(
+                2
+              )}</span>`
+            : ""
+        }
+        <span class="product-card__price--final">$${this.product.FinalPrice.toFixed(
+          2
+        )}</span>
       </p>
       ${discountInfo}
       <p class="product__color">${this.product.Colors[0].ColorName}</p>
