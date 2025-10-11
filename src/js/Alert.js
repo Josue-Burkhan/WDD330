@@ -2,10 +2,10 @@ import { qs } from "./utils.mjs";
 
 export default class Alert {
   constructor() {
-    this.path = `${import.meta.env.BASE_URL}json/alerts.json`;
+    this.path = `/WDD330/json/alerts.json`;
     this.mainElement = qs("main");
   }
-  
+
 
   async init() {
     const alerts = await this.getAlerts();
