@@ -43,20 +43,20 @@ export function renderWithTemplate(template, parent, data, callback) {
 
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate(
-    `/public/partials/header.html`,
+    `/partials/header.html`,
   );
   const headerElement = document.querySelector("header");
   renderWithTemplate(headerTemplate, headerElement);
   headerElement.insertAdjacentHTML("afterend", '<div class="breadcrumb-container"></div>');
 
   const footerTemplate = await loadTemplate(
-    `/public/partials/footer.html`,
+    `/partials/footer.html`,
   );
   const footerElement = document.querySelector("footer");
   renderWithTemplate(footerTemplate, footerElement);
 
   const authModalTemplate = await loadTemplate(
-    `/public/partials/auth-modals.html`,
+    `/partials/auth-modals.html`,
   );
   document.body.insertAdjacentHTML('beforeend', authModalTemplate);
 

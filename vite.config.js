@@ -10,6 +10,7 @@ export default defineConfig(({ command, mode }) => {
       "import.meta.env.VITE_SERVER_URL": JSON.stringify(env.VITE_SERVER_URL),
     },
     root: "src/",
+    publicDir: "public",
     build: {
       outDir: "../dist",
       rollupOptions: {
