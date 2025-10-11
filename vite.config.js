@@ -5,7 +5,7 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   return {
-    base: command === "build" ? "/WDD330/" : "/",
+    base: command === "build" ? "/" : "/",
     define: {
       "import.meta.env.VITE_SERVER_URL": JSON.stringify(env.VITE_SERVER_URL),
     },
