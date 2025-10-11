@@ -4,6 +4,10 @@ import {
   updateCartCount,
 } from "./utils.mjs";
 
+import Breadcrumbs from "./Breadcrumbs.js";
+
+import Comments from "./Comments.js";
+
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
@@ -17,6 +21,10 @@ export default class ProductDetails {
     document
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
+    const breadcrumbs = new Breadcrumbs(this.product.Category, this.product);
+    breadcrumbs.render();
+    const comments = new Comments(this.productId, this.dataSource);
+    comments.init();
   }
 
   addToCart() {

@@ -42,4 +42,16 @@ export default class ProductData {
     const data = await convertToJson(response);
     return data.Result;
   }
+
+  async getComments(productId) {
+    const comments = JSON.parse(localStorage.getItem(`comments-${productId}`)) || [];
+    return comments;
+  }
+
+  async addComment(comment) {
+    const comments = await this.getComments(comment.productId);
+    comments.push(comment);
+    localStorage.setItem(`comments-${comment.productId}`, JSON.stringify(comments));
+    return comment;
+  }
 }

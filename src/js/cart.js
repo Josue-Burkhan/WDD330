@@ -29,7 +29,7 @@ function renderCartContents() {
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider" data-id="${item.Id}">
     <a href="/product/index.html?product=${item.Id}" class="cart-card__image">
-      <img src="${item.Image}" alt="${item.Name}" />
+      <img src="${item.Images.PrimaryMedium}" alt="${item.Name}" />
     </a>
     <a href="/product/index.html?product=${item.Id}">
       <h2 class="card__name">${item.Name}</h2>
@@ -40,7 +40,7 @@ function cartItemTemplate(item) {
       <span class="cart-card__quantity">${item.quantity || 1}</span>
       <button class="increase">+</button>
     </div>
-    <p class="cart-card__price">$${item.FinalPrice}</p>
+    <p class="cart-card__price">${item.FinalPrice}</p>
     <button class="remove">Delete Product</button>
   </li>`;
   return newItem;

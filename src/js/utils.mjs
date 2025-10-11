@@ -39,13 +39,14 @@ export function renderWithTemplate(template, parent, data, callback) {
 
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate(
-    `/partials/header.html`,
+    `/public/partials/header.html`,
   );
   const headerElement = document.querySelector("header");
   renderWithTemplate(headerTemplate, headerElement);
+  headerElement.insertAdjacentHTML("afterend", '<div class="breadcrumb-container"></div>');
 
   const footerTemplate = await loadTemplate(
-    `/partials/footer.html`,
+    `/public/partials/footer.html`,
   );
   const footerElement = document.querySelector("footer");
   renderWithTemplate(footerTemplate, footerElement);
