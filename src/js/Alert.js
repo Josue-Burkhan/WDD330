@@ -5,6 +5,7 @@ export default class Alert {
     this.path = `${import.meta.env.BASE_URL}json/alerts.json`;
     this.mainElement = qs("main");
   }
+  
 
   async init() {
     const alerts = await this.getAlerts();
