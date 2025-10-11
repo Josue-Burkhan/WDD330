@@ -17,10 +17,7 @@ export default defineConfig(({ command, mode }) => {
           main: resolve(__dirname, "src/index.html"),
           cart: resolve(__dirname, "src/cart/index.html"),
           product: resolve(__dirname, "src/product/index.html"),
-          product_listing: resolve(
-            __dirname,
-            "src/product_listing/index.html"
-          ),
+          product_listing: resolve(__dirname, "src/product_listing/index.html"),
         },
       },
     },

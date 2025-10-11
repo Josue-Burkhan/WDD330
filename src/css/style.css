@@ -115,8 +115,8 @@ button {
   padding: 20px 0;
 }
 
-
-.increase, .decrease {
+.increase,
+.decrease {
   width: 60px;
   text-align: center;
   padding: 5px 2rem;
@@ -145,7 +145,6 @@ button {
   align-items: center;
   gap: 10px;
 }
-
 
 /* End utility classes */
 
@@ -295,7 +294,6 @@ button {
   grid-column: 3;
 }
 
-
 .product-card__price {
   display: flex;
   gap: 10px;
@@ -324,7 +322,6 @@ button {
   display: inline-block;
 }
 
-
 /*Alert part*/
 .alert-list {
   padding: 0;
@@ -337,7 +334,6 @@ button {
   text-align: center;
   border: 1px solid transparent;
 }
-
 
 /**/
 .categories {

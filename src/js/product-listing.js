@@ -13,8 +13,8 @@ const myList = new ProductList(category, dataSource, listElement);
 if (query) {
   (async () => {
     const allProducts = await dataSource.getAllProductsByCategory();
-    const filteredProducts = allProducts.filter(product => 
-      product.NameWithoutBrand.toLowerCase().includes(query.toLowerCase())
+    const filteredProducts = allProducts.filter((product) =>
+      product.NameWithoutBrand.toLowerCase().includes(query.toLowerCase()),
     );
     myList.init(Promise.resolve(filteredProducts));
   })();
