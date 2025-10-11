@@ -44,7 +44,8 @@ export default class ProductDetails {
           this.product.SuggestedRetailPrice) *
           100
       );
-      discountInfo = `<p class="product-card__discount">${discountPercentage}% off</p>`;
+      const savedAmount = (this.product.SuggestedRetailPrice - this.product.FinalPrice).toFixed(2);
+      discountInfo = `<p class="product-card__discount">${discountPercentage}% off (save ${savedAmount})</p>`;
     }
 
     return `<section class="product-detail">

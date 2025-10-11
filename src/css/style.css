@@ -381,3 +381,28 @@ footer {
   padding: 1em;
   text-align: center;
 }
+
+.search {
+  display: flex;
+  align-items: center;
+}
+
+.search form {
+  display: flex;
+}
+
+.search input {
+  padding: 0.5rem;
+  border: 1px solid var(--dark-grey);
+  border-radius: 5px 0 0 5px;
+}
+
+.search button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--dark-grey);
+  border-left: none;
+  background-color: var(--dark-grey);
+  color: white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}

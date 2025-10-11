@@ -26,4 +26,23 @@ export default class ProductData {
     const data = await convertToJson(response);
     return data.Result;
   }
+
+  async getAllProductsByCategory() {
+    const categories = ["tents", "backpacks", "sleeping-bags"];
+    const promises = categories.map(category => this.getData(category));
+    const results = await Promise.all(promises);
+    return results.flat();
+  }
+
+  async getAllProducts() {
+    const response = await fetch(`${baseURL}products/search/all`);
+    const data = await convertToJson(response);
+    return data.Result;
+  }
+
+  async searchProducts(query) {
+    const response = await fetch(`${baseURL}products/search/${query}`);
+    const data = await convertToJson(response);
+    return data.Result;
+  }
 }

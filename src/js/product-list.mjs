@@ -5,14 +5,28 @@ export default class ProductList {
     this.listElement = listElement;
   }
 
-  async init() {
-    const list = await this.dataSource.getData(this.category);
+  async init(promise) {
+    const list = promise ? await promise : await this.dataSource.getData(this.category);
+    this.products = list;
     this.renderList(list);
+    const query = new URLSearchParams(window.location.search).get("q");
     document.querySelector(
       ".top-products-title"
-    ).innerHTML = `Top Products: ${
+    ).innerHTML = query ? `Search Results for "${query}"` : `Top Products: ${
       this.category.charAt(0).toUpperCase() + this.category.slice(1)
     }`;
+    document.getElementById("sortByName").addEventListener("click", () => this.sortByName());
+    document.getElementById("sortByPrice").addEventListener("click", () => this.sortByPrice());
+  }
+
+  sortByName() {
+    this.products.sort((a, b) => a.NameWithoutBrand.localeCompare(b.NameWithoutBrand));
+    this.renderList(this.products);
+  }
+
+  sortByPrice() {
+    this.products.sort((a, b) => a.FinalPrice - b.FinalPrice);
+    this.renderList(this.products);
   }
 
   renderList(list) {
