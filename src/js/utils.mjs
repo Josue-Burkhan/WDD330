@@ -39,13 +39,13 @@ export function renderWithTemplate(template, parent, data, callback) {
 
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate(
-    `${import.meta.env.BASE_URL}partials/header.html`,
+    `/partials/header.html`,
   );
   const headerElement = document.querySelector("header");
   renderWithTemplate(headerTemplate, headerElement);
 
   const footerTemplate = await loadTemplate(
-    `${import.meta.env.BASE_URL}partials/footer.html`,
+    `/partials/footer.html`,
   );
   const footerElement = document.querySelector("footer");
   renderWithTemplate(footerTemplate, footerElement);

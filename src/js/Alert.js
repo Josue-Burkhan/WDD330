@@ -2,7 +2,7 @@ import { qs } from "./utils.mjs";
 
 export default class Alert {
   constructor() {
-    this.path = `${import.meta.env.BASE_URL}json/alerts.json`;
+    this.path = `/json/alerts.json`;
     this.mainElement = qs("main");
   }
   
