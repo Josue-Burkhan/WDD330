@@ -1,3 +1,7 @@
+import Auth from './auth.js';
+
+export const auth = new Auth();
+
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
@@ -50,6 +54,13 @@ export async function loadHeaderFooter() {
   );
   const footerElement = document.querySelector("footer");
   renderWithTemplate(footerTemplate, footerElement);
+
+  const authModalTemplate = await loadTemplate(
+    `/public/partials/auth-modals.html`,
+  );
+  document.body.insertAdjacentHTML('beforeend', authModalTemplate);
+
+  auth.init();
 
   updateCartCount();
 }

@@ -3,6 +3,7 @@ import {
   setLocalStorage,
   loadHeaderFooter,
   updateCartCount,
+  auth
 } from "./utils.mjs";
 
 loadHeaderFooter();
@@ -84,3 +85,11 @@ document.querySelector(".product-list").addEventListener("click", (e) => {
 });
 
 renderCartContents();
+
+document.getElementById('checkout-button').addEventListener('click', () => {
+    if (auth.isLoggedIn()) {
+        window.location.href = '/checkout/index.html';
+    } else {
+        document.getElementById('login-modal').style.display = 'block';
+    }
+});
